@@ -1,0 +1,236 @@
+/* Variables y reset */
+:root {
+    --bg-primary: #1a1a2e;
+    --bg-secondary: #16213e;
+    --bg-calculator: #0f3460;
+    --accent-blue: #4dabf7;
+    --accent-blue-hover: #339af0;
+    --text-primary: #e9ecef;
+    --text-secondary: #adb5bd;
+    --btn-number: #1b2a4a;
+    --btn-operator: #4dabf7;
+    --btn-function: #2c3e6b;
+    --btn-equals: #339af0;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --border-radius: 16px;
+    --transition: all 0.2s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Contenedor de la calculadora */
+.calculator {
+    background: var(--bg-calculator);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 380px;
+    padding: 24px;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Display */
+.display {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    word-wrap: break-word;
+    word-break: break-all;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.previous-operand {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    min-height: 24px;
+    margin-bottom: 8px;
+    transition: var(--transition);
+}
+
+.current-operand {
+    color: var(--text-primary);
+    font-size: 2.5rem;
+    font-weight: 300;
+    transition: var(--transition);
+}
+
+/* Grid de botones */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+/* Botones base */
+.btn {
+    background: var(--btn-number);
+    border: none;
+    border-radius: 12px;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding: 18px;
+    transition: var(--transition);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Efecto ripple */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s;
+}
+
+.btn:active::after {
+    width: 200px;
+    height: 200px;
+}
+
+/* Botones de números */
+.btn.number {
+    background: var(--btn-number);
+}
+
+.btn.number:hover {
+    background: #243b6b;
+}
+
+/* Botones de operadores */
+.btn.operator {
+    background: var(--btn-operator);
+    color: white;
+    font-weight: 600;
+}
+
+.btn.operator:hover {
+    background: var(--accent-blue-hover);
+}
+
+/* Botones de función */
+.btn.function {
+    background: var(--btn-function);
+    color: var(--accent-blue);
+    font-weight: 600;
+}
+
+.btn.function:hover {
+    background: #3a5080;
+    color: white;
+}
+
+/* Botón igual */
+.btn.equals {
+    background: var(--btn-equals);
+    color: white;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.btn.equals:hover {
+    background: #228be6;
+    transform: translateY(-2px) scale(1.05);
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .calculator {
+        max-width: 100%;
+        padding: 16px;
+    }
+    
+    .display {
+        padding: 16px;
+        min-height: 100px;
+    }
+    
+    .current-operand {
+        font-size: 2rem;
+    }
+    
+    .buttons {
+        gap: 8px;
+    }
+    
+    .btn {
+        padding: 14px;
+        font-size: 1.1rem;
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .calculator {
+        padding: 12px;
+    }
+    
+    .display {
+        padding: 12px;
+        min-height: 80px;
+    }
+    
+    .current-operand {
+        font-size: 1.8rem;
+    }
+    
+    .buttons {
+        gap: 6px;
+    }
+    
+    .btn {
+        padding: 12px;
+        font-size: 1rem;
+        border-radius: 8px;
+    }
+}
