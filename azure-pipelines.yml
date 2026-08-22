@@ -11,7 +11,7 @@ steps:
     command: 'publish'
     publishDirectory: '$(Calculadora)' # <-- Modificamos esto para que tome la raíz de tu GitHub
     feedsToUsePublish: 'internal'
-    vstsFeedPublish: 'Presentación Análisis de sistemas 2/Prueba1' # (Si en el paso anterior le pusiste el nombre del proyecto, déjalo aquí también)
+    vstsFeedPublish: 'Prueba1' # (Si en el paso anterior le pusiste el nombre del proyecto, déjalo aquí también)
     vstsFeedPackagePublish: 'paquete-calculadora' 
     versionOption: 'custom'       # <-- Cambiamos la forma de versionar
     versionPublish: '1.0.0'       # <-- Declaramos que esta es la versión oficial 1.0.0
