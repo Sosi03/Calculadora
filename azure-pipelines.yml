@@ -1,0 +1,16 @@
+trigger:
+- main 
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: UniversalPackages@0
+  displayName: 'Conectar y publicar Calculadora en el Feed'
+  inputs:
+    command: 'publish'
+    publishDirectory: '$(Build.SourcesDirectory)/Calculadora/Calculadora' 
+    feedsToUsePublish: 'internal'
+    vstsFeedPublish: 'Ejemplo1.0' 
+    vstsFeedPackagePublish: 'paquete-calculadora' 
+    versionOption: 'patch'
