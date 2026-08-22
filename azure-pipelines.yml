@@ -2,16 +2,17 @@ trigger:
 - main 
 
 pool:
-  vmImage: 'ubuntu-latest'
+  # Cambiamos a Windows para evitar que las tildes del proyecto rompan la consola
+  vmImage: 'windows-latest' 
 
 steps:
 - task: UniversalPackages@0
-  displayName: 'Conectar y publicar Calculadora en el Feed'
+  displayName: 'Publicar Calculadora a Artifacts'
   inputs:
     command: 'publish'
-    publishDirectory: '$(Calculadora)' # <-- Modificamos esto para que tome la raíz de tu GitHub
+    publishDirectory: '$(Calculadora)' 
     feedsToUsePublish: 'internal'
-    vstsFeedPublish: 'Presentación Análisis de sistemas 2/Prueba1' # (Si en el paso anterior le pusiste el nombre del proyecto, déjalo aquí también)
+    vstsFeedPublish: 'Prueba1.1' # Al ser de organización, ya no necesita el nombre del proyecto
     vstsFeedPackagePublish: 'paquete-calculadora' 
-    versionOption: 'custom'       # <-- Cambiamos la forma de versionar
-    versionPublish: '1.0.1'       # <-- Declaramos que esta es la versión oficial 1.0.0
+    versionOption: 'custom'       
+    versionPublish: '1.0.0'
